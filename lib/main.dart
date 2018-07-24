@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'trans.dart';
 import 'order.dart';
 import 'wallet.dart';
@@ -47,6 +48,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Trans mTrans;
+  Order mOrder;
+  Wallet mWallet;
+  Mine mine;
+
   int _currentIndex = 0;
 
   void _addTrans() {
@@ -67,59 +73,56 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return new Scaffold(
-        body: new Center(
-          // Center is a layout widget. It takes a single child and positions it
-          // in the middle of the parent.
-          child: buildPage(),
-        ),
-        floatingActionButton: new FloatingActionButton(
-          onPressed: _addTrans,
-          tooltip: 'Increment',
-          child: new Icon(Icons.add),
-        ),
-        bottomNavigationBar: new BottomNavigationBar(
-          items: [
-            new BottomNavigationBarItem(
-              icon: new Icon(Icons.traffic),
-              title: new Text("交易"),
-            ),
-            new BottomNavigationBarItem(
-              icon: new Icon(Icons.reorder),
-              title: new Text("订单"),
-            ),
-            new BottomNavigationBarItem(
-              icon: new Icon(Icons.cached),
-              title: new Text("钱包"),
-            ),
-            new BottomNavigationBarItem(
-              icon: new Icon(Icons.people),
-              title: new Text("我的"),
-            )
-          ],
-          type: BottomNavigationBarType.fixed,
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-          fixedColor: Colors.blue,
-          currentIndex: _currentIndex,
-        ));
+    return new CupertinoTabScaffold(
+      tabBar: new CupertinoTabBar(
+        items: [
+          new BottomNavigationBarItem(
+            icon: new Icon(Icons.traffic),
+            title: new Text("交易"),
+          ),
+          new BottomNavigationBarItem(
+            icon: new Icon(Icons.reorder),
+            title: new Text("订单"),
+          ),
+          new BottomNavigationBarItem(
+            icon: new Icon(Icons.cached),
+            title: new Text("钱包"),
+          ),
+          new BottomNavigationBarItem(
+            icon: new Icon(Icons.people),
+            title: new Text("我的"),
+          )
+        ],
+        currentIndex: _currentIndex,
+      ),
+      tabBuilder: buildPage,
+    );
   }
 
-  Widget buildPage() {
-    switch (_currentIndex) {
+  Widget buildPage(context, index) {
+    switch (index) {
       case 1:
-        return Order();
+        if (mOrder == null) {
+          mOrder = Order();
+        }
+        return mOrder;
       case 2:
-        return Wallet();
+        if (mWallet == null) {
+          mWallet = Wallet();
+        }
+        return mWallet;
       case 3:
-        return Mine();
+        if (mine == null) {
+          mine = Mine();
+        }
+        return mine;
       default:
-        return Trans(
-          content: "交易列表页",
-        );
+        if (mTrans == null) {
+          mTrans = Trans(
+            content: "交易列表页",
+          );
+        }
+        return mTrans;
     }
   }
 }
