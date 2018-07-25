@@ -4,11 +4,23 @@ import 'trans.dart';
 import 'order.dart';
 import 'wallet.dart';
 import 'mine.dart';
+import 'pageManger.dart';
 
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  Map<String, WidgetBuilder> _buildRoutes() {
+    // For a different example of how to set up an application routing table
+    // using named routes, consider the example in the Navigator class documentation:
+    // https://docs.flutter.io/flutter/widgets/Navigator-class.html
+    return new Map<String, WidgetBuilder>.fromIterable(
+      kAllGalleryDemos,
+      key: (dynamic demo) => '${demo.routeName}',
+      value: (dynamic demo) => demo.buildRoute,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -25,6 +37,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: new MyHomePage(title: 'Flutter Demo Home Page'),
+      routes: _buildRoutes(),
     );
   }
 }

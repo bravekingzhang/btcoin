@@ -12,6 +12,11 @@ class _MineState extends State<Mine> {
         appBar: AppBar(
           title: Text("我的"),
         ),
-        body: new Center(child: new Text("我的页面")));
+        body: GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, '/register');
+          },
+          child: new Center(child: new Text("我的页面")),
+        ));
   }
 }

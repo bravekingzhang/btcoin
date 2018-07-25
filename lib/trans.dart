@@ -18,6 +18,7 @@ class Trans extends StatefulWidget {
 }
 
 class _OrderState extends State<Trans> {
+  double fontSize = 13.0;
   int _pageIndex = 0;
   List<TransModel> transList;
   RefreshController refreshController = RefreshController();
@@ -26,7 +27,6 @@ class _OrderState extends State<Trans> {
   void initState() {
     //Called when this object is inserted into the tree.
     super.initState();
-    print("*****************Trans initState*****************");
     _getData(true);
   }
 
@@ -109,7 +109,8 @@ class _OrderState extends State<Trans> {
                   children: <Widget>[
                     Text(
                       transList[index].name,
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontSize: fontSize, fontWeight: FontWeight.bold),
                     ),
                     Container(
                       margin: EdgeInsets.only(left: 3.0),
@@ -118,7 +119,8 @@ class _OrderState extends State<Trans> {
                           top: 2.0, bottom: 2.0, left: 1.0, right: 1.0),
                       child: Text(
                         getCashType(transList[index].type),
-                        style: TextStyle(color: Colors.white),
+                        style:
+                            TextStyle(fontSize: fontSize, color: Colors.white),
                       ),
                     )
                   ],
@@ -127,12 +129,14 @@ class _OrderState extends State<Trans> {
                   padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
                   child: Text(
                     '交易 ${transList[index].transSuccNum} | 好评 ${transList[index].comment}% | 信任 ${transList[index].relay}',
-                    style: TextStyle(color: Colors.grey.shade500),
+                    style: TextStyle(
+                        fontSize: fontSize, color: Colors.grey.shade500),
                   ),
                 ),
                 Text(
                   '限额 ${transList[index].limitLow}-${transList[index].limitHigh} CNY',
-                  style: TextStyle(color: Colors.grey.shade500),
+                  style: TextStyle(
+                      fontSize: fontSize, color: Colors.grey.shade500),
                 )
               ],
             ),
@@ -141,7 +145,8 @@ class _OrderState extends State<Trans> {
             children: <Widget>[
               Text(
                 '${transList[index].curTrans} CNY',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style:
+                    TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold),
               ),
               Container(
                 padding: const EdgeInsets.all(2.0),
@@ -150,7 +155,7 @@ class _OrderState extends State<Trans> {
                     border: Border.all(color: Colors.lightBlue, width: 1.0)),
                 child: Text(
                   '购买 BTC',
-                  style: TextStyle(color: Colors.lightBlue),
+                  style: TextStyle(fontSize: fontSize, color: Colors.lightBlue),
                 ),
               )
             ],
