@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-//这里的import可以统一在一个地方export出来
-import 'register.dart';
+import 'pages.dart';
 
 class GalleryDemo {
   const GalleryDemo({

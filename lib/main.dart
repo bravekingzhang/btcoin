@@ -4,7 +4,7 @@ import 'trans.dart';
 import 'order.dart';
 import 'wallet.dart';
 import 'mine.dart';
-import 'pageManger.dart';
+import 'package:coins_east/utils/pageManger.dart';
 
 void main() => runApp(new MyApp());
 

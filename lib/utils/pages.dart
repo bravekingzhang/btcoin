@@ -1,0 +1,1 @@
+export 'package:coins_east/register.dart';

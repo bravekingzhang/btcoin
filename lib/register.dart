@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'NetWork.dart';
+import 'package:coins_east/utils/NetWork.dart';
 import 'widget/dioImage.dart';
 
 class Register extends StatefulWidget {
